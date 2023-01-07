@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - docker/**
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: docker login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+      - name: build base
+        run: export TARGET=base; cd "docker/$TARGET" && docker build --build-arg ROOT_PASSWORD=root . -t ${{secrets.DOCKER_USER}}/${PWD##*/} && docker push ${{secrets.DOCKER_USER}}/base
+
+      - name: build dev 
+        run: export TARGET=dev; cd "docker/$TARGET" && docker build . -t ${{secrets.DOCKER_USER}}/${PWD##*/} && docker push ${{secrets.DOCKER_USER}}/dev
+
+      - name: build java 
+        run: export TARGET=java; cd "docker/$TARGET" && docker build . -t ${{secrets.DOCKER_USER}}/${PWD##*/} && docker push ${{secrets.DOCKER_USER}}/java 
+
+      - name: build jupyterlab 
+        run: export TARGET=jupyterlab; cd "docker/$TARGET" && docker build . -t ${{secrets.DOCKER_USER}}/${PWD##*/} && docker push ${{secrets.DOCKER_USER}}/jupyterlab
+
+      - name: build aws 
+        run: export TARGET=aws; cd "docker/$TARGET" && docker build . -t ${{secrets.DOCKER_USER}}/${PWD##*/} && docker push ${{secrets.DOCKER_USER}}/aws
+
+      - name: build proxypy 
+        run: export TARGET=proxypy; cd "docker/$TARGET" && docker build . -t ${{secrets.DOCKER_USER}}/${PWD##*/} && docker push ${{secrets.DOCKER_USER}}/proxypy
+

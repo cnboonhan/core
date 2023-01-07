@@ -1,0 +1,21 @@
+ZSH_THEME="robbyrussell"
+
+export ZSH="$HOME/.oh-my-zsh"
+source $HOME/.asdf/asdf.sh
+source $ZSH/oh-my-zsh.sh
+[ -f "/mnt/.customrc" ] && . "/mnt/.customrc"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh && bindkey "^[v" fzf-file-widget
+
+plugins=(
+  docker
+  git
+  fzf
+  zsh-autosuggestions
+  gitignore
+  git-extras
+  tmux
+  python
+  zsh-vi-mode
+)
+
+

@@ -1,0 +1,53 @@
+{
+    "yaml.format.enable": true,
+    "yaml.completion": true,
+    "yaml.validate": true,
+    "yaml.hover": true,
+    "yaml.customTags": [
+        "!And",
+        "!And sequence",
+        "!If",
+        "!If sequence",
+        "!Not",
+        "!Not sequence",
+        "!Equals",
+        "!Equals sequence",
+        "!Or",
+        "!Or sequence",
+        "!FindInMap",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Join",
+        "!Join sequence",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!Sub sequence",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!ImportValue sequence",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Split sequence"
+    ],
+    "python.formatting.autopep8Path": "/usr/bin/autopep8",
+    "python.formatting.autopep8Args": [
+        "--indent-size=4"
+    ],
+    "languageserver": {
+        "terraform": {
+            "command": "terraform-ls",
+            "args": [
+                "serve"
+            ],
+            "filetypes": [
+                "terraform",
+                "tf"
+            ],
+            "initializationOptions": {},
+            "settings": {}
+        }
+    }
+}

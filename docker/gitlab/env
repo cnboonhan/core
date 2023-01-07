@@ -1,0 +1,3 @@
+RUNNER_NAME=gitlab-runner-1
+REGISTRATION_TOKEN=TOKEN
+CI_SERVER_URL=http://host.docker.internal:8000

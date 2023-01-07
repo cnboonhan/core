@@ -1,0 +1,9 @@
+*.swp
+*.swo
+volume
+.ipynb_checkpoints/
+config/
+logs/
+data/
+*.db
+.env

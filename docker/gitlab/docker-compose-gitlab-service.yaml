@@ -1,0 +1,27 @@
+# docker exec gitlab-ce cat /etc/gitlab/initial_root_password | grep Password
+# Login with username:root and password:[as above] and change it 
+# Then visit the runner page and get a runner token, and fill in .env file accordingly
+version: '3.7'
+services:
+  web:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: 'localhost'
+    container_name: gitlab-ce
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:8000'
+      GITLAB_ROOT_PASSOWRD: password
+    ports:
+      - '8000:80'
+      - '8443:443'
+    volumes:
+      - './config:/etc/gitlab'
+      - './logs:/var/log/gitlab'
+      - './data:/var/opt/gitlab'
+    networks:
+      - gitlab
+
+networks:
+  gitlab:
+    name: gitlab-network

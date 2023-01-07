@@ -1,0 +1,23 @@
+customCommands:
+  containers:
+  - name: zsh
+    attach: true
+    command: docker exec -it {{ .Container.ID }} /bin/zsh
+    serviceNames: []
+  - name: bash
+    attach: true
+    command: docker exec -it {{ .Container.ID }} /bin/bash
+    serviceNames: []
+  - name: rename
+    command: docker rename {{ .Container.Name }} {{ .Container.Name }}-{{ slice .Container.ID 0 5 }}
+    serviceNames: []
+  - name: backup
+    command: docker save {{ .Container.Name }} -o {{ .Container.Name }}.tar
+    serviceNames: []
+  images:
+  - name: Start
+    attach: true
+    command: docker run --restart=always --name {{ .Image.Name }} --network=host -d -v sda:/mnt {{ .Image.Name }}
+    serviceNames: []
+gui:
+  returnImmediately: true

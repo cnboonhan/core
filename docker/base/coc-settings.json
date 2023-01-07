@@ -1,0 +1,10 @@
+{
+    "yaml.format.enable": true,
+    "yaml.completion": true,
+    "yaml.validate": true,
+    "yaml.hover": true,
+    "python.formatting.autopep8Path": "/usr/bin/autopep8",
+    "python.formatting.autopep8Args": [
+        "--indent-size=4"
+    ]
+}
