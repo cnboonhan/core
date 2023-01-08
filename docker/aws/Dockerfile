@@ -11,6 +11,9 @@ RUN mkdir -p /root/.aws
 COPY credentials /root/.aws/credentials
 COPY config /root/.aws/config
 
+RUN mkdir -p /root/.vim
+COPY coc-settings.json /root/.vim/coc-settings.json
+
 RUN curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "/tmp/session-manager-plugin.deb"
 RUN cd /tmp && dpkg -i session-manager-plugin.deb
 
